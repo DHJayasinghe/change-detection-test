@@ -11,17 +11,10 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit() {
     console.log('HomeComponent OnInit');
   }
-
-  logChangeDetection() {
-    console.log('HomeComponent template evaluated');
-    return true;
-  }
-
-  clickMe() { }
 }
