@@ -1,0 +1,22 @@
+<div *ngIf="logChangeDetection()"
+  style="width: 90%; height: 90%; border: 1px solid #f76464; padding: 10px;">
+  <h1>Component 2</h1>
+  <button (click)="clickMe()">Click Me {{counter}}</button>
+  <p>Event handler change: {{eventHandlerChange}}</p>
+  <p>Input change: {{ myinput }}</p>
+  <!-- <p>Observable change: {{myObservable | async}}</p> -->
+  <table border="0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Language</th>
+        <th>Bio</th>
+      </tr>
+    </thead>
+    <tbody> @for (profile of profiles; track profile) { <tr>
+        <td >{{profile.name}} <button (click)="viewProfile()">View</button></td>
+        <td>{{profile.language}}</td>
+        <td>{{profile.bio}}</td>
+      </tr> } </tbody>
+  </table>
+</div>
