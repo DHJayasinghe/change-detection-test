@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'next-slot-countdown',
-  templateUrl: './next-slot-countdown.component.html',
-  styleUrls: ['./next-slot-countdown.component.css']
+  selector: 'slot-countdown',
+  templateUrl: './slot-countdown.component.html',
+  styleUrls: ['./slot-countdown.component.css']
 })
-export class NextSlotCountdownComponent implements OnInit {
+export class SlotCountdownComponent implements OnInit {
   private targetTime: Date = new Date();
 
   private timerSubscription!: Subscription;

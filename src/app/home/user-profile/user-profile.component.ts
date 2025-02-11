@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DataSharingService, IUserProfile } from './data-sharing.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'user-profiles',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css'],
-  imports: [CommonModule, MatTableModule, MatPaginatorModule]
+  imports: [CommonModule, MatCardModule, MatTableModule, MatPaginatorModule]
 
 })
 export class UserProfileComponent implements OnInit, AfterViewInit  {

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { UserProfileComponent } from "../user-profile/user-profile.component";
 import { CommonModule } from '@angular/common';
-import { NextSlotCountdownComponent } from '../next-slot-countdown/next-slot-countdown.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-component1',
-  templateUrl: './component1.component.html',
-  styleUrls: ['./component1.component.css'],
-  imports: [UserProfileComponent, CommonModule, NextSlotCountdownComponent]
+  selector: 'header-navigation',
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.css'],
+  imports: [ CommonModule, MatButtonModule, MatMenuModule]
 })
-export class Component1Component implements OnInit {
+export class NavigationComponent implements OnInit {
   someVariable: number = 0;
   constructor() { }
 
