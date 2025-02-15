@@ -1,6 +1,12 @@
-<div>
+<mat-drawer-container autosize>
+  <mat-drawer #drawer>
+    <add-new-account (accountAdded)="whenNewAccountAdded($event);drawer.toggle();"></add-new-account>
+  </mat-drawer>
+  <button type="button"
+    mat-button
+    (click)="drawer.toggle()"> Add New </button>
   <header-navigation></header-navigation>
   <slot-countdown></slot-countdown>
   <orders-per-min></orders-per-min>
-  <user-profiles></user-profiles>
-</div>
+  <user-profiles [newAccount]="newAccount"></user-profiles>
+</mat-drawer-container>

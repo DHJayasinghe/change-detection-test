@@ -18,7 +18,6 @@ export class MockOrdersService {
     return of(this.orders);
   }
 
-
   private generateInitialOrders() {
     // Generate an initial 10,000,000 orders
     for (let i = 0; i < 10000000; i++) {
@@ -26,6 +25,7 @@ export class MockOrdersService {
     }
   }
   private simulateReceivingDataFromWebSocket() {
+    // Simulate Websocket message receival
     setInterval(() => {
       var newOrder = this.generateRandomOrder();
       this.$newOrders.next(newOrder);

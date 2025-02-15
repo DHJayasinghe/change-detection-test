@@ -23,14 +23,16 @@ export class OrdersPerMinComponent implements OnInit {
   }
 
   calculateQtyPerMin() {
+    // CPU intensive calculation
     let qty = 0;
     for (let i = 0; i < this.orders.length; i++) {
       qty += this.orders[i].qty;
     }
-    return this.decimalPipe.transform(qty, '1.2-2') || '';
+    return this.decimalPipe.transform(qty, '1.0-2') || '';
   }
 
   calculateTotalPerMin() {
+     // CPU intensive calculation
     let sum = 0;
     for (let i = 0; i < this.orders.length; i++) {
       sum += this.orders[i].totalPrice;
