@@ -15,6 +15,10 @@ export class SlotCountdownComponent implements OnInit {
   minutes = '00';
   seconds = '00';
 
+  constructor() {
+
+  }
+
   ngOnInit() {
     this.targetTime.setHours(this.targetTime.getHours() + 2);
     this.startCountdown();

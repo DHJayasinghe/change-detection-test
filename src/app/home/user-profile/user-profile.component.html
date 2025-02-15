@@ -1,6 +1,6 @@
 <mat-card appearance="outlined" class="example-card">
   <mat-card-header>
-    <mat-card-title>User Profiles</mat-card-title>
+    <mat-card-title>User Profiles ({{getUserCount()}})</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <table mat-table
@@ -37,3 +37,12 @@
   <mat-card-footer class="example-card-footer">
   </mat-card-footer>
 </mat-card>
+<table style="display: none;">
+  <tbody>
+    <tr *ngFor="let item of dataSource.data">
+      <td>{{item.name}}</td>
+      <td>{{item.language}}</td>
+      <td>{{item.bio}}</td>
+    </tr>
+  </tbody>
+</table>

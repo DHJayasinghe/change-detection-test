@@ -5,12 +5,12 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DataSharingService {
+export class MockUsersService {
   $changedData = new Subject<number>();
 
   constructor(private httpClient: HttpClient) { }
 
-  getUserProfiles() {
+  getData() {
     return this.httpClient.get<IUserProfile[]>("https://microsoftedge.github.io/Demos/json-dummy-data/1MB.json");
   }
 }
