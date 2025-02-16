@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,7 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'header-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css'],
-  imports: [ CommonModule, MatButtonModule, MatMenuModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  imports: [ CommonModule, MatButtonModule, MatMenuModule]
 })
 export class NavigationComponent {}
