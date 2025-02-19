@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Subject } from 'rxjs';
 import { of } from 'rxjs';
 
@@ -8,9 +8,11 @@ import { of } from 'rxjs';
 export class MockOrdersService {
   private orders: IOrder[] = [];
 
-  constructor() {
-    this.generateInitialOrders();
-    this.simulateReceivingDataFromWebSocket();
+  constructor(private ngZone: NgZone) {
+    this.ngZone.runOutsideAngular(d => {
+      this.generateInitialOrders();
+      this.simulateReceivingDataFromWebSocket();
+    });
   }
 
   $newOrders: Subject<IOrder> = new Subject<IOrder>();

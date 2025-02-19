@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
@@ -15,13 +15,14 @@ export class SlotCountdownComponent implements OnInit {
   minutes = '00';
   seconds = '00';
 
-  constructor() {
-
+  constructor(private zone: NgZone, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.targetTime.setHours(this.targetTime.getHours() + 2);
-    this.startCountdown();
+    this.zone.runOutsideAngular(d => {
+      this.startCountdown();
+    });
   }
 
   ngOnDestroy() {
@@ -50,6 +51,7 @@ export class SlotCountdownComponent implements OnInit {
       this.hours = this.padZero(hours);
       this.minutes = this.padZero(minutes);
       this.seconds = this.padZero(seconds);
+      this.cdr.markForCheck();
     });
   }
 
