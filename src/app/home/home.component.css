@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* Full viewport height */
+}
+
+.navbar {
+    display: flex;
+    padding: 10px;
+    font-size: 18px;
+    height: 150px;
+    /* Fixed height for navbar */
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    /* Takes remaining height */
+}
+
+.left-table, .right-table {
+    flex: 1;
+    padding: 20px;
+}

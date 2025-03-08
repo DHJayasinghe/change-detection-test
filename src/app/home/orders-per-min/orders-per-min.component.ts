@@ -1,5 +1,5 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { IOrder, MockOrdersService } from '../../services/mock-orders.service';
 
 @Component({
@@ -11,19 +11,24 @@ import { IOrder, MockOrdersService } from '../../services/mock-orders.service';
 export class OrdersPerMinComponent implements OnInit {
   orders: IOrder[] = [];
 
-  constructor(private orderService: MockOrdersService, private decimalPipe: DecimalPipe) { }
+  constructor(private orderService: MockOrdersService, private decimalPipe: DecimalPipe, private ngZone: NgZone, private cdr: ChangeDetectorRef) {
+    // this.cdr.detach();
+  }
 
   ngOnInit() {
-    this.orderService.getData().subscribe(orders => {
-      this.orders = orders;
-    });
-    this.orderService.$newOrders.subscribe(newOrder => {
-      this.orders.push(newOrder);
+    this.ngZone.runOutsideAngular(d => {
+      this.orderService.getData().subscribe(orders => {
+        this.orders = orders;
+      });
+      this.orderService.$newOrders.subscribe(newOrder => {
+        this.orders.push(newOrder);
+        this.cdr.detectChanges();
+      });
     });
   }
 
+  // CPU intensive calculation
   calculateQtyPerMin() {
-    // CPU intensive calculation
     let qty = 0;
     for (let i = 0; i < this.orders.length; i++) {
       qty += this.orders[i].qty;
@@ -31,8 +36,8 @@ export class OrdersPerMinComponent implements OnInit {
     return this.decimalPipe.transform(qty, '1.0-2') || '';
   }
 
+  // CPU intensive calculation
   calculateTotalPerMin() {
-     // CPU intensive calculation
     let sum = 0;
     for (let i = 0; i < this.orders.length; i++) {
       sum += this.orders[i].totalPrice;

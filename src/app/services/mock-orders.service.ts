@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Subject } from 'rxjs';
 import { of } from 'rxjs';
 
@@ -8,9 +8,11 @@ import { of } from 'rxjs';
 export class MockOrdersService {
   private orders: IOrder[] = [];
 
-  constructor() {
-    this.generateInitialOrders();
-    this.simulateReceivingDataFromWebSocket();
+  constructor(private ngZone: NgZone) {
+    this.ngZone.runOutsideAngular(_ => {
+      this.generateInitialOrders();
+      this.simulateReceivingDataFromWebSocket();
+    });
   }
 
   $newOrders: Subject<IOrder> = new Subject<IOrder>();
@@ -24,13 +26,23 @@ export class MockOrdersService {
       this.orders.push(this.generateRandomOrder());
     }
   }
+  
   private simulateReceivingDataFromWebSocket() {
-    // Simulate Websocket message receival
-    setInterval(() => {
+    const generateOrder = () => {
       var newOrder = this.generateRandomOrder();
       this.$newOrders.next(newOrder);
       this.orders.push(newOrder);
-    }, 100);
+
+      // Generate a new order after a random interval
+      const nextInterval = this.getRandomInterval();
+      setTimeout(generateOrder, nextInterval);
+    };
+
+    generateOrder(); // Start the first order generation
+  }
+
+  private getRandomInterval(): number {
+    return Math.floor(Math.random() * (5000 - 500 + 1)) + 500; // Random interval between 500ms to 5000ms
   }
 
 

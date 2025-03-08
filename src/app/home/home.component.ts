@@ -7,12 +7,23 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { OrdersPerMinComponent } from './orders-per-min/orders-per-min.component';
 import { MatButtonModule } from '@angular/material/button';
 import { AddNewAccountComponent } from './add-new-account/add-new-account.component';
+import { ProductsComponent } from './products/products.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule, MatSidenavModule, MatButtonModule, AddNewAccountComponent, NavigationComponent, UserProfileComponent, SlotCountdownComponent, OrdersPerMinComponent]
+  imports: [
+    CommonModule,
+    MatSidenavModule,
+    MatButtonModule,
+    AddNewAccountComponent,
+    NavigationComponent,
+    UserProfileComponent,
+    SlotCountdownComponent,
+    OrdersPerMinComponent,
+    ProductsComponent
+  ]
 })
 export class HomeComponent {
   newAccount: string = "";

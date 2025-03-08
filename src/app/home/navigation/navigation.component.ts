@@ -7,6 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'header-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css'],
-  imports: [ CommonModule, MatButtonModule, MatMenuModule]
+  imports: [CommonModule, MatButtonModule, MatMenuModule]
 })
-export class NavigationComponent {}
+export class NavigationComponent { }
