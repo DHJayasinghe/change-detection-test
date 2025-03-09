@@ -3,9 +3,9 @@ import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { IOrder, MockOrdersService } from '../../services/mock-orders.service';
 
 @Component({
-  selector: 'orders-per-min',
-  templateUrl: './orders-per-min.component.html',
-  styleUrls: ['./orders-per-min.component.scss'],
+  selector: 'orders-summary',
+  templateUrl: './orders-summary.component.html',
+  styleUrls: ['./orders-summary.component.scss'],
   providers: [DecimalPipe]
 })
 export class OrdersPerMinComponent implements OnInit {
@@ -29,19 +29,22 @@ export class OrdersPerMinComponent implements OnInit {
 
   // CPU intensive calculation
   calculateQtyPerMin() {
-    let qty = 0;
-    for (let i = 0; i < this.orders.length; i++) {
-      qty += this.orders[i].qty;
-    }
-    return this.decimalPipe.transform(qty, '1.0-2') || '';
+    let qty = this.orders.reduce((sum, order) => sum + order.qty, 0);
+    return this.formatLargeNumber(qty);
   }
 
   // CPU intensive calculation
   calculateTotalPerMin() {
-    let sum = 0;
-    for (let i = 0; i < this.orders.length; i++) {
-      sum += this.orders[i].totalPrice;
+    let total = this.orders.reduce((sum, order) => sum + order.totalPrice, 0);
+    return this.formatLargeNumber(total);
+  }
+
+  private formatLargeNumber(value: number): string {
+    if (value >= 1_000_000) {
+      return this.decimalPipe.transform(value / 1_000_000, '1.2-2') + ' M'; // Millions
+    } else if (value >= 1_000) {
+      return this.decimalPipe.transform(value / 1_000, '1.2-2') + ' K'; // Thousands
     }
-    return this.decimalPipe.transform(sum, '1.2-2') || '';
+    return this.decimalPipe.transform(value, '1.0-2') || ''; // Normal formatting
   }
 }

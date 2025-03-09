@@ -11,8 +11,8 @@
         <header-navigation></header-navigation>
       </div>
       <div class="right-table">
-        <slot-countdown></slot-countdown>
-        <orders-per-min></orders-per-min>
+        <slot-countdown style="margin-right: 30px"></slot-countdown>
+        <orders-summary></orders-summary>
       </div>
     </div>
     <div class="content">
@@ -20,7 +20,7 @@
         <app-products></app-products>
       </div>
       <div class="right-table">
-        <user-profiles [newAccount]="newAccount"></user-profiles>
+        <app-users [newAccount]="newAccount"></app-users>
       </div>
     </div>
   </mat-drawer-container>

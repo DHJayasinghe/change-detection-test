@@ -6,15 +6,15 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
-  selector: 'user-profiles',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css'],
+  selector: 'app-users',
+  templateUrl: './user-accounts.component.html',
+  styleUrls: ['./user-accounts.component.css'],
   imports: [CommonModule, MatCardModule, MatTableModule, MatPaginatorModule]
 })
 export class UserProfileComponent implements AfterViewInit, OnChanges {
   @Input() newAccount: string = "";
   dataSource = new MatTableDataSource<IUserProfile>([]);
-  displayedColumns: string[] = ['name', 'language', 'bio'];
+  displayedColumns: string[] = ['name', 'language'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator = <MatPaginator>{};
 
