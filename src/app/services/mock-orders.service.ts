@@ -11,7 +11,7 @@ export class MockOrdersService {
   constructor(private ngZone: NgZone) {
     this.ngZone.runOutsideAngular(_ => {
       this.generateInitialOrders();
-      this.simulateReceivingDataFromWebSocket();
+      // this.simulateReceivingDataFromWebSocket();
     });
   }
 

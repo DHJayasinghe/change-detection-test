@@ -4,7 +4,7 @@ import { NavigationComponent } from "./navigation/navigation.component";
 import { CommonModule } from '@angular/common';
 import { SlotCountdownComponent } from './slot-countdown/slot-countdown.component';
 import { UserProfileComponent } from './user-accounts/user-accounts.component';
-import { OrdersPerMinComponent } from './orders-summary/orders-summary.component';
+import { OrderSummaryComponent } from './orders-summary/orders-summary.component';
 import { MatButtonModule } from '@angular/material/button';
 import { AddNewAccountComponent } from './add-new-account/add-new-account.component';
 import { ProductsComponent } from './products/products.component';
@@ -21,7 +21,7 @@ import { ProductsComponent } from './products/products.component';
     NavigationComponent,
     UserProfileComponent,
     SlotCountdownComponent,
-    OrdersPerMinComponent,
+    OrderSummaryComponent,
     ProductsComponent
   ]
 })

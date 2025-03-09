@@ -4,8 +4,12 @@
     <mat-card-title>Products</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <input type="text"
+    <!-- <input type="text"
       [formControl]="searchControl"
+      placeholder="Search..."
+      class="search-input" /> -->
+    <input type="text"
+      #searchInput
       placeholder="Search..."
       class="search-input" />
     <table mat-table

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, ViewChild } from '@angular/core';
 import { MockUsersService, IUserProfile } from '../../services/mock-users.service';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -9,7 +9,8 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-users',
   templateUrl: './user-accounts.component.html',
   styleUrls: ['./user-accounts.component.css'],
-  imports: [CommonModule, MatCardModule, MatTableModule, MatPaginatorModule]
+  imports: [CommonModule, MatCardModule, MatTableModule, MatPaginatorModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserProfileComponent implements AfterViewInit, OnChanges {
   @Input() newAccount: string = "";

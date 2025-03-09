@@ -15,13 +15,16 @@ export class SlotCountdownComponent implements OnInit {
   minutes = '00';
   seconds = '00';
 
-  constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) { }
+  constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {
+    this.cdr.detach();
+  }
 
   ngOnInit() {
     this.targetTime.setHours(this.targetTime.getHours() + 2);
-    this.ngZone.runOutsideAngular(d => {
-      this.startCountdown();
-    });
+    this.cdr.detectChanges();
+    // this.ngZone.runOutsideAngular(d => {
+    //   this.startCountdown();
+    // });
   }
 
   ngOnDestroy() {

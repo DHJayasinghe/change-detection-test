@@ -8,17 +8,18 @@ import { IOrder, MockOrdersService } from '../../services/mock-orders.service';
   styleUrls: ['./orders-summary.component.scss'],
   providers: [DecimalPipe]
 })
-export class OrdersPerMinComponent implements OnInit {
+export class OrderSummaryComponent implements OnInit {
   orders: IOrder[] = [];
 
   constructor(private orderService: MockOrdersService, private decimalPipe: DecimalPipe, private ngZone: NgZone, private cdr: ChangeDetectorRef) {
-    // this.cdr.detach();
+    this.cdr.detach();
   }
 
   ngOnInit() {
     this.ngZone.runOutsideAngular(d => {
       this.orderService.getData().subscribe(orders => {
         this.orders = orders;
+        this.cdr.detectChanges();
       });
       this.orderService.$newOrders.subscribe(newOrder => {
         this.orders.push(newOrder);
