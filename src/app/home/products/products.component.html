@@ -4,6 +4,10 @@
     <mat-card-title>Products</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <input type="text"
+      [formControl]="searchControl"
+      placeholder="Search..."
+      class="search-input" />
     <table mat-table
       [dataSource]="products">
       <ng-container matColumnDef="title">
