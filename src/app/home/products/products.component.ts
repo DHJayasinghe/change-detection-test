@@ -5,6 +5,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
+import { MockOrdersService } from '../../services/mock-orders.service';
+import memoize from 'memoizee';
 
 @Component({
   selector: 'app-products',
@@ -14,11 +16,14 @@ import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 })
 export class ProductsComponent implements OnInit, AfterViewInit {
   @ViewChild('searchInput') searchInput: ElementRef<HTMLInputElement> | undefined;
-  displayedColumns = ["title", "category", "price"];
+  displayedColumns = ["title", "category", "price", "totalorders"];
   products: any[] = [];
   searchControl = new FormControl('');
+  private memorizedOrderCount: (id: number) => number;
 
-  constructor(private httpClient: HttpClient, private ngZone: NgZone, private cdr: ChangeDetectorRef) { }
+  constructor(private httpClient: HttpClient, private orderService: MockOrdersService, private ngZone: NgZone, private cdr: ChangeDetectorRef) {
+    this.memorizedOrderCount = memoize(this.orderService.calculateOrderCount.bind(this.orderService), { maxAge: 30000 });
+  }
 
   ngAfterViewInit(): void {
     this.ngZone.runOutsideAngular(_ => {
@@ -49,5 +54,10 @@ export class ProductsComponent implements OnInit, AfterViewInit {
       this.products = d.products as any[];
       this.cdr.detectChanges();
     });
+  }
+
+  public getOrdersCount(id: number) {
+    return this.ngZone.runOutsideAngular(() => this.memorizedOrderCount(id));
+    // return this.orderService.calculateOrderCount(id);
   }
 }

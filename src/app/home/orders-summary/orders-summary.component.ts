@@ -21,10 +21,10 @@ export class OrderSummaryComponent implements OnInit {
         this.orders = orders;
         this.cdr.detectChanges();
       });
-      this.orderService.$newOrders.subscribe(newOrder => {
-        this.orders.push(newOrder);
-        this.cdr.detectChanges();
-      });
+      // this.orderService.$newOrders.subscribe(newOrder => {
+      //   this.orders.push(newOrder);
+      //   this.cdr.detectChanges();
+      // });
     });
   }
 

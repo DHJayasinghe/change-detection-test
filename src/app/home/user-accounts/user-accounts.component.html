@@ -2,7 +2,8 @@
   <mat-card-header>
     <mat-card-title>User Accounts ({{getUserCount()}})</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content class="table-scroll">
+    <add-new-account (accountAdded)="whenNewAccountAdded($event)"></add-new-account>
     <table mat-table
       [dataSource]="dataSource"
       class="mat-elevation-z8">

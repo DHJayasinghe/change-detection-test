@@ -21,12 +21,12 @@ export class MockOrdersService {
   }
 
   private generateInitialOrders() {
-    // Generate an initial 10,000,000 orders
-    for (let i = 0; i < 10000000; i++) {
-      this.orders.push(this.generateRandomOrder());
+    // Generate an initial 100,000 orders
+    for (let i = 0; i < 100000; i++) {
+      this.orders.push(this.generateRandomOrder(true));
     }
   }
-  
+
   private simulateReceivingDataFromWebSocket() {
     const generateOrder = () => {
       var newOrder = this.generateRandomOrder();
@@ -46,16 +46,22 @@ export class MockOrdersService {
   }
 
 
-  private generateRandomOrder(): IOrder {
+  private generateRandomOrder(productIdBelow10 = false): IOrder {
     return {
+      productId: productIdBelow10 ? Math.floor(Math.random() * 10) + 1 : Math.floor(Math.random() * (10000 - 10 + 1)) + 10, // productId between 1 and 10 || productId between 10-10000
       qty: Math.floor(Math.random() * 10) + 1, // qty between 1 and 10
       totalPrice: parseFloat((Math.random() * 1000).toFixed(2)) // price between 0 and 1000
     };
   }
 
+  public calculateOrderCount(productId: number) {
+    return this.orders.reduce((sum, order) => sum + (order.productId == productId ? order.qty : 0), 0);
+  }
+
 }
 
 export interface IOrder {
+  productId: number,
   qty: number,
   totalPrice: number
 }

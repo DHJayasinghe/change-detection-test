@@ -1,27 +1,19 @@
 <div class="container">
-  <mat-drawer-container autosize>
-    <div class="navbar">
-      <div class="left-table">
-        <mat-drawer #drawer>
-          <add-new-account (accountAdded)="whenNewAccountAdded($event);drawer.toggle();"></add-new-account>
-        </mat-drawer>
-        <button type="button"
-          mat-button
-          (click)="drawer.toggle()"> Add New </button>
-        <header-navigation></header-navigation>
-      </div>
-      <div class="right-table">
-        <slot-countdown style="margin-right: 30px"></slot-countdown>
-        <orders-summary></orders-summary>
-      </div>
+  <div class="navbar">
+    <div class="left-table">
+      <header-navigation></header-navigation>
     </div>
-    <div class="content">
-      <div class="left-table">
-        <app-products></app-products>
-      </div>
-      <div class="right-table">
-        <app-users [newAccount]="newAccount"></app-users>
-      </div>
+    <div class="right-table">
+      <slot-countdown style="margin-right: 30px"></slot-countdown>
+      <orders-summary></orders-summary>
     </div>
-  </mat-drawer-container>
+  </div>
+  <div class="content">
+    <div class="left-table">
+      <app-products></app-products>
+    </div>
+    <div class="right-table">
+      <app-users></app-users>
+    </div>
+  </div>
 </div>

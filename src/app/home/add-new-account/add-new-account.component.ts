@@ -17,5 +17,6 @@ export class AddNewAccountComponent {
 
   save() {
     this.accountAdded.emit(this.name);
+    this.name = "";
   }
 }

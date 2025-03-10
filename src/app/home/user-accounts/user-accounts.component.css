@@ -1,3 +1,7 @@
 .example-card {
   max-width: 800px;
 }
+.table-scroll {
+  max-height: 85vh;
+  overflow-y: auto;
+}
