@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
+import { ComponentTreeComponent } from './home/component-tree/component-tree.component';
 import { DefaultComponent } from './home/default/default.component';
 import { HomeComponent } from './home/home.component';
-import { ZonePollution1Component } from './home/zone-pollution1/zone-pollution1.component';
 
 export const routes: Routes = [
     {
@@ -13,7 +13,7 @@ export const routes: Routes = [
         component: DefaultComponent
     },
     {
-        path: 'zone-pollution1',
-        component: ZonePollution1Component
+        path: 'component-tree',
+        component: ComponentTreeComponent
     }
 ];

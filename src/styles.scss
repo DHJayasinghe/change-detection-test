@@ -15,3 +15,42 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.component {
+  width: 80%;
+  height: 80%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 2%;
+}
+.component div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.component span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2px 5px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.corner-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
