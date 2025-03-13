@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { DataSharingService } from '../../services/data-sharing.service';
 import { Component1 } from './component-1/component-1.component';
 import { Component2 } from './component-2/component-2.component';
 
@@ -7,13 +8,19 @@ import { Component2 } from './component-2/component-2.component';
   selector: 'app-component-tree',
   templateUrl: './component-tree.component.html',
   styleUrls: ['./component-tree.component.css'],
-  imports: [Component1, Component2,CommonModule]
+  imports: [Component1, Component2,CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComponentTreeComponent {
   backgroundColor: string = '#ADD8E6'; // Light Blue color
+  sequence: number = 0;
+
+  constructor(private dataShare: DataSharingService){}
 
   onClick() {
+    this.sequence = Math.floor(Math.random()*100);
     this.backgroundColor = this.getRandomColor();
+    this.dataShare.notify(this.sequence);
   }
 
   private getRandomColor(): string {

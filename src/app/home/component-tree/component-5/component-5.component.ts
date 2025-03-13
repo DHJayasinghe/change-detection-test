@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Component6 } from '../component-6/component-6.component';
 
 @Component({
   selector: 'app-component-5',
   templateUrl: './component-5.component.html',
-  imports: [Component6,CommonModule]
+  imports: [Component6,CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Component5 {
   backgroundColor: string = '#ADD8E6'; // Light Blue color

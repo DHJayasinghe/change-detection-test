@@ -1,6 +1,8 @@
-<div 
-  [ngStyle]="{'background-color': backgroundColor}">
+<div [ngStyle]="{'background-color': backgroundColor}">
   <span>component-6</span>
+  <div>Sequence (from observable): {{sequence}}</div>
+  <!-- <div>Sequence (from observable): {{dataShare.$subject | async}}</div> -->
+  <!-- <div>Sequence (from observable): {{sequence()}}</div> -->
   <button class="corner-button"
     (click)="onClick()">Click</button>
 </div>
