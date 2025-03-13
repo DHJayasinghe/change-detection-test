@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { DataSharingService } from '../../../services/data-sharing.service';
+import { MockUsersService } from '../../../services/mock-users.service';
 
 @Component({
   selector: 'app-component-6',
