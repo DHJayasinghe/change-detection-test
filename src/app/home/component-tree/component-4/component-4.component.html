@@ -1,5 +1,6 @@
-<div [ngStyle]="{'background-color': backgroundColor}">
+<div [ngStyle]="{'background-color': backgroundColor()}">
   <span>component-4</span>
-  <button class="corner-button"
-    (click)="onClick()">Click</button>
+  <!-- <button class="corner-button"
+    (click)="onClick()">Click</button> -->
+  <button #btn class="corner-button">Click</button>
 </div>

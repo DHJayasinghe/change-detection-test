@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, signal, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-component-4',
@@ -7,14 +7,22 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Component4 {
-  backgroundColor: string = '#ADD8E6'; // Light Blue color
+export class Component4 implements AfterViewInit {
+  @ViewChild("btn") btnEl: ElementRef<HTMLButtonElement> | undefined;
+  backgroundColor = signal('#ADD8E6'); // Light Blue color
 
   onClick() {
-    this.backgroundColor = this.getRandomColor();
+    this.backgroundColor.set(this.getRandomColor());
   }
 
   private getRandomColor(): string {
     return `hsl(${Math.random() * 360}, 60%, 80%)`; // Pastel colors
+  }
+
+  ngAfterViewInit() {
+    this.btnEl?.nativeElement.addEventListener("click", () => {
+      console.log("onClick");
+      this.onClick();
+    });
   }
 }

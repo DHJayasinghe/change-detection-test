@@ -11,14 +11,14 @@ import { MockUsersService } from '../../../services/mock-users.service';
 })
 export class Component6 {
   backgroundColor: string = '#ADD8E6'; // Light Blue color
-  sequence: number = 0;
-  // sequence = signal(0);
+  // sequence: number = 0;
+  sequence = signal(0);
 
   constructor(public dataShare: DataSharingService) {
     this.dataShare.$subject.subscribe(sequence => {
       console.log("New sequence received "+ sequence);
-      this.sequence = sequence;
-      // this.sequence.set(sequence);
+      // this.sequence = sequence;
+      this.sequence.set(sequence);
     });
   }
 
